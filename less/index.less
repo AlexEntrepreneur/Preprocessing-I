@@ -48,7 +48,15 @@ table {
 	border-spacing: 0;
 }
 
-/* Set every element's box-sizing to border-box */
+// FLEXBOX
+.flexbox(@flex-dir: row; @justify-cont: flex-start; @align-items: stretch) {
+	display: flex;
+	flex-direction: @flex-dir;
+	justify-content: @justify-cont;
+	align-items: @align-items;
+}
+
+// Set every element's box-sizing to border-box
 * {
     box-sizing: border-box;
 }
@@ -59,8 +67,74 @@ html {
 
 html, body {
   height: 100%;
+	margin: 0;
 }
 
 body {
 	font-size: 1.6rem;
+	color: black;
+	a {
+		text-decoration: none;
+		color: black;
+	}
+}
+
+header {
+	height: 85px;
+	.flexbox(row; center; center);
+	nav {
+		.flexbox(row; space-between);
+		flex-grow: 1;
+		max-width: 40%;
+	}
+}
+
+.content-container {
+	max-width: 865px;
+	margin: 0 auto;
+	.flexbox(column);
+
+	.top-intro-section {
+		.flexbox(column; flex-start; center);
+	}
+
+	.statement-skills-section {
+		.flexbox(row, space-between);
+
+		.statement-container, .skills-container {
+			width: calc(50% - 10px);
+		}
+	}
+
+	.experience-section {
+		.flexbox(column; flex-start; space-between);
+
+		.jobs-container {
+			position: relative;
+
+			.job-row {
+				.flexbox(row; space-between);
+				.job-info, .job-year {
+					width: calc(50% - 10px);
+				}
+			}
+
+			.time-line {
+				z-index: -1;
+				position: absolute;
+				left: 50%;
+				top: 0;
+				transform: translateX(-50%);
+				height: 100%;
+				width: 3px;
+			}
+		}
+
+	}
+}
+
+footer {
+	margin-top: 40px;
+	text-align: center;
+	padding: 40px 0;
 }
