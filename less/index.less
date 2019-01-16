@@ -57,6 +57,12 @@ table {
 // size values
 @base-font-size: 1.6rem;
 
+// colors
+@white: rgba(255,255,255,0.8);
+@light-grey: rgba(255,255,255,0.15);
+@primary: dodgerblue;
+@dark-bg: #222023;
+
 
 // FLEXBOX
 .flexbox(@flex-dir: row; @justify-cont: flex-start; @align-items: stretch) {
@@ -83,11 +89,12 @@ html, body {
 
 body {
 	font-size: @base-font-size;
-	color: black;
+	background-color: @dark-bg;
+	color: @white;
 
 	a {
 		text-decoration: none;
-		color: black;
+		color: @white;
 	}
 
 	p {
@@ -118,9 +125,14 @@ body {
 
 	}
 
+	button.primary {
+		background-color: @primary;
+		color: @white;
+	}
+
 	.divider {
 		height: 1px;
-		background-color: black;
+		background-color: @primary;
 		width: 15%;
 		margin: @normal-space 0 @medium-space 0;
 	}
@@ -129,6 +141,8 @@ body {
 header {
 	height: 85px;
 	.flexbox(row; center; center);
+	border-bottom: 1px solid @light-grey;
+
 	nav {
 		.flexbox(row; space-between);
 		flex-grow: 1;
@@ -140,6 +154,7 @@ header {
 	max-width: 865px;
 	margin: 0 auto;
 	.flexbox(column);
+	padding-top: @large-space;
 
 	.top-intro-section {
 		.flexbox(column; flex-start; center);
@@ -180,10 +195,11 @@ header {
 			.progress-bar {
 				height: @small-space;
 				margin-bottom: @medium-space;
+				background-color: @light-grey;
 
 				div {
 					height: 100%;
-					opacity: 0.7;
+					background-color: @primary;
 				}
 
 				.progress-full {
@@ -246,7 +262,7 @@ header {
 				transform: translateX(-50%);
 				height: 100%;
 				width: 2px;
-				background-color: black;
+				background-color: @primary;
 			}
 		}
 
