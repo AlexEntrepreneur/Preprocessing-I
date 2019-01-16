@@ -59,7 +59,8 @@ table {
 
 // colors
 @white: rgba(255,255,255,0.8);
-@light-grey: rgba(255,255,255,0.15);
+@subtle-grey: rgba(255,255,255,0.15);
+@less-subtle-grey: rgba(255,255,255,0.4);
 @primary: dodgerblue;
 @dark-bg: #222023;
 
@@ -88,6 +89,7 @@ html, body {
 }
 
 body {
+	-webkit-font-smoothing: antialiased;
 	font-size: @base-font-size;
 	background-color: @dark-bg;
 	color: @white;
@@ -134,14 +136,15 @@ body {
 		height: 1px;
 		background-color: @primary;
 		width: 15%;
-		margin: @normal-space 0 @medium-space 0;
+		margin: 0 auto @medium-space auto;
 	}
 }
 
 header {
 	height: 85px;
 	.flexbox(row; center; center);
-	border-bottom: 1px solid @light-grey;
+	background-color: @dark-bg;
+	border-bottom: 1px solid @subtle-grey;
 
 	nav {
 		.flexbox(row; space-between);
@@ -159,6 +162,7 @@ header {
 	.top-intro-section {
 		.flexbox(column; flex-start; center);
 		margin-bottom: @large-space;
+		border-bottom: 1px solid @subtle-grey;
 
 		figure {
 			max-width: 210px;
@@ -174,52 +178,63 @@ header {
 			}
 		}
 
+		.tagline {
+			margin-bottom: @medium-space;
+			color: @less-subtle-grey;
+		}
+
 		.bio {
 			max-width: 65%;
 		}
 	}
 
 	.statement-skills-section {
-		.flexbox(row, space-between);
 		margin-bottom: @large-space;
 
-		.statement-container, .skills-container {
-			width: calc(50% - 10px);
+		h2 {
+			text-align: center;
 		}
+		.statement-skills-container {
+			.flexbox(row, space-between);
 
-		.skills-container {
-
-			.skill {
-				margin-bottom: @small-space;
+			.statement-container, .skills-container {
+				width: calc(50% - 10px);
 			}
-			.progress-bar {
-				height: @small-space;
-				margin-bottom: @medium-space;
-				background-color: @light-grey;
 
-				div {
-					height: 100%;
-					background-color: @primary;
+			.skills-container {
+
+				.skill {
+					margin-bottom: @small-space;
 				}
+				.progress-bar {
+					height: @small-space;
+					margin-bottom: @medium-space;
+					background-color: @subtle-grey;
 
-				.progress-full {
-					width: 93%;
-				}
+					div {
+						height: 100%;
+						background-color: @primary;
+					}
 
-				.progress-fullish {
-					width: 80%;
-				}
+					.progress-full {
+						width: 93%;
+					}
 
-				.progress-half {
-					width: 50%;
-				}
+					.progress-fullish {
+						width: 80%;
+					}
 
-				.progress-quarter {
-					width: 23%;
-				}
+					.progress-half {
+						width: 50%;
+					}
 
-				.progress-eigth {
-					width: 11%;
+					.progress-quarter {
+						width: 23%;
+					}
+
+					.progress-eigth {
+						width: 11%;
+					}
 				}
 			}
 		}
@@ -270,7 +285,7 @@ header {
 }
 
 footer {
-	margin-top: 40px;
+	margin-top: @medium-space;
 	text-align: center;
-	padding: 40px 0;
+	padding: @medium-space 0;
 }
