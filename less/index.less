@@ -1,5 +1,5 @@
-// VARIABLES
-// spacing val
+//____________________________VARIABLES GO HERE ___________________________//
+// spacing values
 @large-space: 7rem;
 @medium-space: 4rem;
 @normal-space: 2rem;
@@ -16,8 +16,13 @@
 @primary: dodgerblue;
 @dark-bg: #222023;
 
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Heebo');
 
-// FLEXBOX
+@font-stack: 'Heebo', Helvetica, sans-serif;
+
+//____________________________MIXINS GO HERE ___________________________//
+// FLEXBOX MIXIN
 .flexbox(@flex-dir: row; @justify-cont: flex-start; @align-items: stretch) {
 	display: flex;
 	flex-direction: @flex-dir;
@@ -25,19 +30,19 @@
 	align-items: @align-items;
 }
 
-// CALCULATE LINE HEIGHT
+// CALCULATE LINE HEIGHT MIXIN
 .calc-line-height(@font-size) {
 	line-height: calc(@font-size * 1.5);
 }
 
-// BORDER RADIUS
+// BORDER RADIUS MIXIN
 @border-radius: 0.3rem;
 
 .border-radius() {
 	border-radius: @border-radius;
 }
 
-// Set every element's box-sizing to border-box
+//_____________________________STYLING BEGINS HERE________________________ //
 * {
     box-sizing: border-box;
 }
@@ -49,7 +54,8 @@ html {
 html, body {
   height: 100%;
 	margin: 0;
-	font-family: sans-serif;
+	font-family: @font-stack;
+	letter-spacing: 0.03rem;
 }
 
 body {
@@ -94,6 +100,7 @@ body {
 		cursor: pointer;
 		.border-radius();
 		background-color: @white;
+		font-family: @font-stack;
 
 		&:hover {
 			background-color: darken(@white, 20%)
