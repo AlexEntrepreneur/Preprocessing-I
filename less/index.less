@@ -47,6 +47,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+// VARIABLES
+// spacing val
+@large-space: 7rem;
+@medium-space: 4rem;
+@normal-space: 2rem;
+@small-space: 1rem;
+
+// size values
+@base-font-size: 1.6rem;
+
 
 // FLEXBOX
 .flexbox(@flex-dir: row; @justify-cont: flex-start; @align-items: stretch) {
@@ -68,14 +78,51 @@ html {
 html, body {
   height: 100%;
 	margin: 0;
+	font-family: sans-serif;
 }
 
 body {
-	font-size: 1.6rem;
+	font-size: @base-font-size;
 	color: black;
+
 	a {
 		text-decoration: none;
 		color: black;
+	}
+
+	p {
+		margin-bottom: @normal-space;
+	}
+
+	h1 {
+		font-size: 4rem;
+		margin-bottom: @normal-space;
+	}
+
+	h2 {
+		font-size: 2.8rem;
+		margin-bottom: @normal-space;
+	}
+
+	h3 {
+		font-size: 2.2rem;
+		margin-bottom: @normal-space;
+	}
+
+	button {
+		border: none;
+		font-size: @base-font-size;
+		padding: @small-space @medium-space;
+		margin-bottom: @medium-space;
+		cursor: pointer;
+
+	}
+
+	.divider {
+		height: 1px;
+		background-color: black;
+		width: 15%;
+		margin: @normal-space 0 @medium-space 0;
 	}
 }
 
@@ -96,26 +143,98 @@ header {
 
 	.top-intro-section {
 		.flexbox(column; flex-start; center);
+		margin-bottom: @large-space;
+
+		figure {
+			max-width: 210px;
+			max-height: 210px;
+			margin-bottom: @normal-space;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+		    object-position: center;
+				border-radius: 100%;
+			}
+		}
+
+		.bio {
+			max-width: 65%;
+		}
 	}
 
 	.statement-skills-section {
 		.flexbox(row, space-between);
+		margin-bottom: @large-space;
 
 		.statement-container, .skills-container {
 			width: calc(50% - 10px);
 		}
+
+		.skills-container {
+
+			.skill {
+				margin-bottom: @small-space;
+			}
+			.progress-bar {
+				height: @small-space;
+				margin-bottom: @medium-space;
+
+				div {
+					height: 100%;
+					opacity: 0.7;
+				}
+
+				.progress-full {
+					width: 93%;
+				}
+
+				.progress-fullish {
+					width: 80%;
+				}
+
+				.progress-half {
+					width: 50%;
+				}
+
+				.progress-quarter {
+					width: 23%;
+				}
+
+				.progress-eigth {
+					width: 11%;
+				}
+			}
+		}
 	}
 
 	.experience-section {
-		.flexbox(column; flex-start; space-between);
+		.flexbox(column; flex-start);
+		margin-bottom: @large-space;
+
+		h2 {
+			text-align: center;
+		}
 
 		.jobs-container {
 			position: relative;
 
 			.job-row {
 				.flexbox(row; space-between);
+				margin-bottom: @large-space;
 				.job-info, .job-year {
 					width: calc(50% - 10px);
+				}
+				&:nth-child(even) {
+					.flexbox(row-reverse; space-between);
+
+					.job-year {
+						text-align: right;
+					}
+				}
+				&:nth-last-child(2) {
+					margin-bottom: 0;
 				}
 			}
 
@@ -126,7 +245,8 @@ header {
 				top: 0;
 				transform: translateX(-50%);
 				height: 100%;
-				width: 3px;
+				width: 2px;
+				background-color: black;
 			}
 		}
 
