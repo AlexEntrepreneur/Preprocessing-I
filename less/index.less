@@ -74,6 +74,18 @@ table {
 	align-items: @align-items;
 }
 
+// CALCULATE LINE HEIGHT
+.calc-line-height(@font-size) {
+	line-height: calc(@font-size * 1.5);
+}
+
+// BORDER RADIUS
+@border-radius: 0.3rem;
+
+.border-radius() {
+	border-radius: @border-radius;
+}
+
 // Set every element's box-sizing to border-box
 * {
     box-sizing: border-box;
@@ -102,20 +114,24 @@ body {
 
 	p {
 		margin-bottom: @normal-space;
+		.calc-line-height(1.6rem);
 	}
 
 	h1 {
 		font-size: 4rem;
+		.calc-line-height(4rem);
 		margin-bottom: @normal-space;
 	}
 
 	h2 {
 		font-size: 2.8rem;
+		.calc-line-height(2.8rem);
 		margin-bottom: @normal-space;
 	}
 
 	h3 {
 		font-size: 2.2rem;
+		.calc-line-height(2.2rem);
 		margin-bottom: @normal-space;
 	}
 
@@ -125,12 +141,21 @@ body {
 		padding: @small-space @medium-space;
 		margin-bottom: @medium-space;
 		cursor: pointer;
+		.border-radius();
+		background-color: @white;
 
+		&:hover {
+			background-color: darken(@white, 20%)
+		}
 	}
 
 	button.primary {
 		background-color: @primary;
 		color: @white;
+
+		&:hover {
+			background-color: darken(@primary, 20%)
+		}
 	}
 
 	.divider {
@@ -154,7 +179,11 @@ header {
 	nav {
 		.flexbox(row; space-between);
 		flex-grow: 1;
-		max-width: 40%;
+		max-width: 865px;
+
+		a:hover {
+			color: darken(@white, 25%);
+		}
 	}
 }
 
@@ -181,7 +210,12 @@ header {
 				object-fit: cover;
 		    object-position: center;
 				border-radius: 100%;
+				border: 2px solid @less-subtle-grey;
 			}
+		}
+
+		.name {
+			margin-bottom: @small-space;
 		}
 
 		.tagline {
@@ -191,6 +225,7 @@ header {
 
 		.bio {
 			max-width: 65%;
+			margin-bottom: @medium-space;
 		}
 	}
 
@@ -261,7 +296,20 @@ header {
 				.flexbox(row; space-between);
 				margin-bottom: @large-space;
 				.job-info, .job-year {
-					width: calc(50% - 10px);
+					width: calc(50% - @normal-space);
+				}
+
+				.job-info {
+					border: 1px solid @less-subtle-grey;
+					.border-radius();
+					padding: @medium-space;
+				}
+
+				.job-year {
+					line-height: 2.8rem;
+				}
+				.job-title {
+					margin-bottom: 0;
 				}
 				&:nth-child(even) {
 					.flexbox(row-reverse; space-between);
@@ -272,6 +320,10 @@ header {
 				}
 				&:nth-last-child(2) {
 					margin-bottom: 0;
+				}
+				.company {
+					color: @less-subtle-grey;
+					margin-bottom: @small-space;
 				}
 			}
 
