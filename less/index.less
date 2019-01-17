@@ -1,59 +1,307 @@
-// Is this working?
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+//____________________________VARIABLES GO HERE ___________________________//
+// spacing values
+@large-space: 7rem;
+@medium-space: 4rem;
+@normal-space: 2rem;
+@small-space: 1rem;
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+// size values
+@base-font-size: 1.6rem;
+@header-height: 8.5rem;
+
+// colors
+@white: rgba(255,255,255,0.8);
+@subtle-grey: rgba(255,255,255,0.15);
+@less-subtle-grey: rgba(255,255,255,0.4);
+@primary: dodgerblue;
+@dark-bg: #222023;
+
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Heebo');
+
+@font-stack: 'Heebo', Helvetica, sans-serif;
+
+//____________________________MIXINS GO HERE ___________________________//
+// FLEXBOX MIXIN
+.flexbox(@flex-dir: row; @justify-cont: flex-start; @align-items: stretch) {
+	display: flex;
+	flex-direction: @flex-dir;
+	justify-content: @justify-cont;
+	align-items: @align-items;
 }
 
-/* Set every element's box-sizing to border-box */
+// CALCULATE LINE HEIGHT MIXIN
+.calc-line-height(@font-size) {
+	line-height: calc(@font-size * 1.5);
+}
+
+// BORDER RADIUS MIXIN
+@border-radius: 0.3rem;
+
+.border-radius() {
+	border-radius: @border-radius;
+}
+
+//_____________________________STYLING BEGINS HERE________________________ //
 * {
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
+html {
+	font-size: 62.5%;
 }
 
+html, body {
+  height: 100%;
+	margin: 0;
+	font-family: @font-stack;
+	letter-spacing: 0.03rem;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	font-size: @base-font-size;
+	background-color: @dark-bg;
+	color: @white;
+
+	a {
+		text-decoration: none;
+		color: @white;
+	}
+
+	p {
+		margin-bottom: @normal-space;
+		.calc-line-height(1.6rem);
+	}
+
+	h1 {
+		font-size: 4rem;
+		.calc-line-height(4rem);
+		margin-bottom: @normal-space;
+	}
+
+	h2 {
+		font-size: 2.8rem;
+		.calc-line-height(2.8rem);
+		margin-bottom: @normal-space;
+	}
+
+	h3 {
+		font-size: 2.2rem;
+		.calc-line-height(2.2rem);
+		margin-bottom: @normal-space;
+	}
+
+	button {
+		border: none;
+		font-size: @base-font-size;
+		padding: @small-space @medium-space;
+		margin-bottom: @medium-space;
+		cursor: pointer;
+		.border-radius();
+		background-color: @white;
+		font-family: @font-stack;
+
+		&:hover {
+			background-color: darken(@white, 20%)
+		}
+	}
+
+	button.primary {
+		background-color: @primary;
+		color: @white;
+
+		&:hover {
+			background-color: darken(@primary, 20%)
+		}
+	}
+
+	.divider {
+		height: 1px;
+		background-color: @primary;
+		width: 15%;
+		margin: 0 auto @medium-space auto;
+	}
+}
+
+header {
+	height: 85px;
+	width: 100%;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	.flexbox(row; center; center);
+	background-color: @dark-bg;
+	border-bottom: 1px solid @subtle-grey;
+
+	nav {
+		.flexbox(row; space-between);
+		flex-grow: 1;
+		max-width: 865px;
+
+		a:hover {
+			color: darken(@white, 25%);
+		}
+	}
+}
+
+.content-container {
+	max-width: 865px;
+	margin: 0 auto;
+	.flexbox(column);
+	padding-top: @large-space;
+	margin-top: @header-height;
+
+	.top-intro-section {
+		.flexbox(column; flex-start; center);
+		margin-bottom: @large-space;
+		border-bottom: 1px solid @subtle-grey;
+
+		figure {
+			max-width: 210px;
+			max-height: 210px;
+			margin-bottom: @normal-space;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+		    object-position: center;
+				border-radius: 100%;
+				border: 2px solid @less-subtle-grey;
+			}
+		}
+
+		.name {
+			margin-bottom: @small-space;
+		}
+
+		.tagline {
+			margin-bottom: @medium-space;
+			color: @less-subtle-grey;
+		}
+
+		.bio {
+			max-width: 65%;
+			margin-bottom: @medium-space;
+		}
+	}
+
+	.statement-skills-section {
+		margin-bottom: @large-space;
+
+		h2 {
+			text-align: center;
+		}
+		.statement-skills-container {
+			.flexbox(row, space-between);
+
+			.statement-container, .skills-container {
+				width: calc(50% - 10px);
+			}
+
+			.skills-container {
+
+				.skill {
+					margin-bottom: @small-space;
+				}
+				.progress-bar {
+					height: @small-space;
+					margin-bottom: @medium-space;
+					background-color: @subtle-grey;
+
+					div {
+						height: 100%;
+						background-color: @primary;
+					}
+
+					.progress-full {
+						width: 93%;
+					}
+
+					.progress-fullish {
+						width: 80%;
+					}
+
+					.progress-half {
+						width: 50%;
+					}
+
+					.progress-quarter {
+						width: 23%;
+					}
+
+					.progress-eigth {
+						width: 11%;
+					}
+				}
+			}
+		}
+	}
+
+	.experience-section {
+		.flexbox(column; flex-start);
+		margin-bottom: @large-space;
+
+		h2 {
+			text-align: center;
+		}
+
+		.jobs-container {
+			position: relative;
+
+			.job-row {
+				.flexbox(row; space-between);
+				margin-bottom: @large-space;
+				.job-info, .job-year {
+					width: calc(50% - @normal-space);
+				}
+
+				.job-info {
+					border: 1px solid @less-subtle-grey;
+					.border-radius();
+					padding: @medium-space;
+				}
+
+				.job-year {
+					line-height: 2.8rem;
+				}
+				.job-title {
+					margin-bottom: 0;
+				}
+				&:nth-child(odd) {
+					.flexbox(row-reverse; space-between);
+
+					.job-year {
+						text-align: right;
+					}
+				}
+				&:nth-last-child(2) {
+					margin-bottom: 0;
+				}
+				.company {
+					color: @less-subtle-grey;
+					margin-bottom: @small-space;
+				}
+			}
+
+			.time-line {
+				z-index: -1;
+				position: absolute;
+				left: 50%;
+				top: 0;
+				transform: translateX(-50%);
+				height: 100%;
+				width: 2px;
+				background-color: @primary;
+			}
+		}
+
+	}
+}
+
+footer {
+	margin-top: @medium-space;
+	text-align: center;
+	padding: @medium-space 0;
+}
